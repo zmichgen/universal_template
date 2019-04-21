@@ -3,12 +3,18 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssPlug = require('mini-css-extract-plugin');
 const Autoprefixer = require('autoprefixer');
+const CopyPlug = require('copy-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'index_bundle.js',
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -17,8 +23,10 @@ module.exports = {
       filename: 'index.html',
       favicon: './public/html-5.png',
     }),
+    new CopyPlug([{ from: './public', to: './' }]),
     new MiniCssPlug({
       filename: '[name].css',
+      chunkFilename: '[id].css',
     }),
   ],
   devServer: {
@@ -66,6 +74,18 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.(ttf|woff|woff2|eot)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'fonts/[name].[ext]',
+            },
+          },
+        ],
+      },
+
       {
         test: /\.(sa|sc|c)ss$/,
         use: [

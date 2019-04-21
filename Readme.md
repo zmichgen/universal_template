@@ -6,6 +6,7 @@
 - javascript
 - babel
 - eslint
+- font-awesome
 
 ---
 
