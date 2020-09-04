@@ -29,7 +29,7 @@
     "html-webpack-plugin": "^3.2.0",
     "image-webpack-loader": "^4.6.0",
     "mini-css-extract-plugin": "^0.5.0",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.13.1",
     "postcss": "^7.0.14",
     "postcss-load-config": "^2.0.0",
     "postcss-loader": "^3.0.0",
